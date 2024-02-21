@@ -1,0 +1,2545 @@
+
+Interview questions
+Networking
+Interview questions
+1. Project
+	-> HFS
+	-> SFS
+	-> Role & Responsibility
+
+2. Networking
+ 	###OSI Layers###
+	->layer 1 and 1.5
+	->layer 2 , ARP, STP,VLAN,Tagging,CDP, 
+ 	->layer 3, IPv4/v6, ICMP, IGMP, Routing protocol
+                   RIP,OSPF,BGP,VPN, VRRP, 
+	->layer 5, TCP,UDP
+	->layer 7, SNMP,DHCP,FTP,TFTP,
+
+	->packet flow, subnet, broadcast domain , collision
+               domain, wireshark, tcpdump, port channel, 
+               load balancing,telnet,ssh, 
+
+
+3.OS
+	-> Process management
+	-> file mangment
+	-> memory mangement
+	-> IPC
+
+4.C
+	->Bitwise operators
+	->size of union/structure
+
+5.DS
+	->Trees
+	->linked list
+	->Hashing
+	->sorting
+
+
+6.Interview/ Tricky questions.
+	->sed
+	->grep,egrep, vim commands,gdb,disassemble*, symbol                 
+           table, stack with arguments memory, 
+
+Suggested:
+	-> Hackerrank
+
+GOAL:
+	->CCNA,Linux.
+
+
+
+
+Links:
+=====
+
+
+Company: verifyx technologies
+
+
+1). How to extern a below variable.
+    Static int a = 10;
+
+Ans.extern int a = 10;
+    //extern static int a = 10;
+    //error: multiple storage classes in declaration specifiers
+
+2). Show mac address CLI output?
+    Vlan 	mac-address	type 	port
+    Switch has 48 ports, will it get 48 entry’s ?
+Ans.
+    https://learningnetwork.cisco.com/s/question/0D53i00000KsyzN/about-the-command-show-mac-addresstable
+
+SW6#sh mac address-table
+ 
+      	Mac Address Table
+-------------------------------------------.
+Vlan	Mac Address   	Type    	Ports
+----	-----------   	--------	-----
+  All	0011.9297.ef00	STATIC  	CPU
+  All	0011.9297.ef01	STATIC  	CPU
+  All	0011.9297.ef02	STATIC  	CPU    
+
+
+3). Int a = 10;
+    Char *p = &a;
+    Print *p == ?
+Ans. ‘\n’
+
+4).can arp go to another vlan?
+5).TCP/IP round trip time calcaulation? 
+6).where extern and static variables are stored, scoping ?
+   NOTE: BSS -- uninitialized data 
+         Data -- Initialized data
+7).which IPC messages (shared memory) are you used in your project?
+8).what is your role in your project?
+9).what project you are working?
+
+
+
+
+
+VVDN Technologies, kochin
+ 
+
+q).Where static variables are stored?
+q).why structure padding ? how to avoid it ?
+q).how can i copy 10byte of string to char a[10] ? 
+   if not How to make it possible?
+q).how can i store 25 byte character string into char *p = malloc(10) ?
+   If any challanges, what are they? How do we fix it ?
+   NOTE:strncpy 
+q).how do you store pointer to a int variable ? 
+   Is it right one?
+   If yes, how do we access pointer address from int? 
+
+*q).in f1, we declare structure variable sv , if we pass sv to f2 how do we 
+      Access sv in f2 to print sv data ?
+
+q).can we pass structure variable to another function?
+
+q).if i open mulitple google tabs in my web browser, how each tabs will 
+   Work well particular to their individual search ?
+
+q).server socket programming system calls? Sequence? Arguments ?
+
+q).How to create multi threaded server programm?
+
+q).what is the return type of fork ?
+
+q).what is the stack size of your linux machine / linux process / thread?
+ans.The process main thread stack size cannot grow larger than the set limit. The default value of this limit is 8 MB. Exceeding this limit will result in a segmentation fault and the process will be sent a SIGSEGV signal, by default killing it.
+
+
+
+prashad@prashad-VirtualBox:~$ ulimit -a
+stack size              (kbytes, -s) 8192
+prashad@prashad-VirtualBox:~$ 
+
+
+
+q).how pthread_create works? Arguments? Who wil fill tid arg ?
+ans).
+    int pthread_create(pthread_t *thread, const pthread_attr_t *attr,
+                          void *(*start_routine) (void *), void *arg);
+
+
+Tricky question:
+------------------
+q). What is the output of below program ?
+
+#include<stdio.h>
+#include<time.h>
+
+char timestr_1[128]="\0";
+char *time_con(time_t stamp) {
+  struct tm *t;
+  t = localtime(&stamp);
+  strftime(timestr_1, sizeof(timestr_1),"%s", t);
+  return timestr_1;
+}
+
+void main() {
+  time_t last, first;
+  while(1) {
+  first = time(NULL);
+  sleep(1);
+  last = time(NULL);
+  //printf("%ld\t%ld\n", first, last);
+  printf("%s\t%s\n",time_con(first),time_con(last));
+    //printf("%s\n",time_con(last));
+  sleep(1);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Aricent interview questions:
+
+1.how to pass arguments between two threads in a single process ?
+2.what is the mac address for multicast?
+ans.
+3.ARP working whole ? arp cache ?
+4.Mac table ?
+Ans. vlan mac_address type ports
+     2    aaxxxxxxxx       gi0/1
+5.how many mac address switch will have ?
+6.unions vs structures ?
+7.where we are using unions in networking ?
+8.What is the purpose of LE and BE? 
+9.What is the purpose of padding.
+10.
+
+
+Arcient interview 
+date:28/08/19
+Interviewr: samuel 
+
+1.find a size of structure without sizeof operator
+Ans.
+  Struct emp {
+		Int emp_id;
+		Char em[_name[10];
+  };
+
+  (((struct emp *)(&e+1)) - ((struct emp *) &e))   );	⇒ 1
+  (((char *)(&e+1)) - ((char *) &e))   );			⇒ 16 
+
+
+2.how will free() work? 
+
+3.if i given hexa dump data, how your find vlan tag is there or not?
+
+4.purpose of double pointer?
+
+5.where we use unions/bitfields in your project ?
+
+6.do you know ip classes ?
+
+7.find out loop in linked list?
+
+8.Write a program to count number of set bits in negative number, size independent
+Ans. 
+gdb) p/t -10
+$3 = 1111 1111 1111 1111 1111 1111 1111 0110
+
+(gdb) p/t 10
+$4 = 1010
+
+
+
+9.What are all shared between two threads?
+ans). Heap, data, text, ofdt
+
+10.Write a program to corrupt stack
+
+11.Where were using signalling mechanisum
+12.How to pass signals between two threads?
+13.Sso time in HA stacking ? 
+Ans. 6 minutes 
+14.what is Preimptiev schedule in algorithm.
+15.What happen to child process, if I kill parent process?
+16.Why padding, what if padding not there.
+17.do you know function pointers, where do you use?
+18.orphan process, zombie process ?
+19.explain about your critical Bug fix in your project ?
+20.socket system calls in client server interaction
+21.lisp protocol
+22.how communication happen, suppose if standby needs to update to the
+   Active about linkflap.
+23.
+
+
+
+
+
+Gigamon Interview Question:
+
+Round 1:
+About project
+How refer global variable in local context already defined same name in local?
+Static variable access
+Memory map?
+About data structure
+Hash concept
+Round 2.
+About project
+Set particul
+
+
+
+
+
+
+
+WIPRO
+-----
+1)What is the boot sequeuce in the board
+2)What are all the process comes up
+3)What are all the memory leak bugs you handled
+4)What is gdb, what are all command you used.
+5)How to use live gdb
+6)write a program to allocate memory for three dimensional array
+	int ***array = malloc(3*sizeof(int**));         
+7)Write a program to revers linked list
+8)Write a program to find, the give Tree is BST or not
+
+===================================================================================================================
+TECHNICOLOR
+-----------
+1)unsigned func(){
+if(error)
+return -1;
+}
+
+2)Memory allocation, if failure happens, we will free the memory but we dont return, 
+next line will have strcpy even after failure
+3)circular queue logic, print used bytes between read end and write end
+4)strcpy for low memory allocated buffer for ex
+char arr[10]
+char arr1[8]
+strcpy(arr, "audiopath");
+strcpy(arr1, "Myvideopath");
+5)Write a program to dynamically print array 3X3
+6)Write a program to get maximum of two number in the given array
+7)Write a recursive program to print -5 to +5
+
+
+===================================================================================================================
+NOKIA
+-----
+1)where does IOS run, i said RAM, he said that is generic answer
+2)What is SFP, what is inside in it
+3)how will control phy from asic (ans MDIO), what is the line name between phy and port (ans XFI, QSGMII)
+4)Write a program to do merge sort linked list
+
+
+===================================================================================================================
+MICROCHIP
+---------
+1)How ping works
+2)How traffic flows in Vlan for Front side stacking
+3)How packet flows from one switch to switch in stacking
+4)String copy question using malloc, similar to strdup
+
+===================================================================================================================
+MBIT
+----
+1)What is semaphore and mutex
+2)what is task and thread
+3)how to synchronize thread
+ans). Mutex, read-write locks, conditional variables..
+4)what do you think about mbit
+5)Binary search for sorted arry
+6)Write a program to reverse bits (user might also give how many to shift i.e he might give 3 shift, only that should go to msb)
+a=11001011
+output should be 11010011
+7)funca(){
+int *ptr;
+ptr = malloc(1);
+funcb(ptr);
+printf("ptr value %d", *ptr);
+}
+
+8)funcb(int *ptr){
+*ptr = 5;
+}
+
+===================================================================================================================
+IPINFUSION
+----------
+
+1)arr a[10]=20;
+2)void *ptr; ptr++;
+3)double pointer to two dimensional memory
+
+
+===================================================================================================================
+HPE
+---
+1)STP
+2)Trinary search
+3)Circular linked list middle node delete
+4)Reverse linked list
+5)OS memory management
+6)Tree node Deletion
+7)Stack implementation using linked list or array
+8)How to find start of each memory segment
+9)Semaphore and Mutex difference
+10)Deadlock
+11)Swap two nodes of Linked list not data
+12)Malloc for 2 dimensional array
+13)Null pointer crash
+14)#include <stdio.h>
+
+// A structure without forced alignment
+struct test1
+{
+   unsigned int x: 5;
+   unsigned int y: 8;
+};
+ // A structure with forced alignment
+
+struct test2
+{
+   unsigned int x: 5;
+   unsigned int: 0;
+   unsigned int y: 8;
+};
+
+int main()
+{
+   printf("Size of test1 is %d bytes\n", sizeof(struct test1));
+   printf("Size of test2 is %d bytes\n", sizeof(struct test2));
+   return 0;
+}
+un on IDE
+Output:
+Size of test1 is 4 bytes
+Size of test2 is 8 bytes
+
+15)#include "stdio.h"
+    int main()
+
+{
+ struct {int i; char c;} myVar = {.c ='A',.i = 100};
+ printf("%d %c",myVar.i, myVar.c);
+ return 0;
+}
+Ans: 100,A
+
+16)#include  <stdio.h>
+#include  <sys/types.h>
+
+int main()
+{
+    fork();
+    fork();
+    fork();
+    printf("hello\n");
+    return 0;
+}
+17)Your own sizeof operator
+18)Reverse linked list using recursion
+19)How to check Big endian , little endian
+20)Binary tree, avl tre
+21)Binary tree vs linked list
+22)Extern
+23)Why global variable TThas default value but not local variable
+24)Given linked list , create two linked list one having even place element and other having odd place elements
+25)Dynamic linking, static linking
+26)Multiply two number using bitwise operator
+27)Compilation steps.
+28)Mutex semaphore
+
+ETC....
+
+
+
+===================================================================================================================
+HARMAN
+------
+1)int main()
+{
+char *c = "Hello";
+func(c);
+printf("%s", c);
+}
+
+2)func (char *c)
+{
+c = malloc(5);
+strcpy(c,"world");
+}
+
+3)reverse all bits
+4)swap nibbles in bytes
+5)swap two bits
+6)What is process and thread
+7)semaphore and mutex
+8)do you know device drivers
+9)interrupt context vs process context
+10What is message queue
+
+===================================================================================================================
+CAMBIUMN
+--------
+
+1)Write a short C program which prints out all of the subsets
+of the numbers in the range 1..23 which add up to 23
+ubsets should be printed one per line with a single space
+between each number. Each subset should be free of duplicates
+
+One of the subsets might look like this:
+
+1 2 4 16
+
+===================================================================================================================
+HCL
+---
+1)  Introduce Yours self
+2)  How many % you give strong in 'c'
+3)  progam write
+       1)     char ptr[] = "abcdabrtabvbab.....";
+               wtite How many times "ab "  in the string and the
+position of the the substring "ab"
+       2)     write program for "BIT Reverse"
+       3)     Linked List
+                 (i)   Travserse the single List and Display them
+                 (ii)   Insert at Last
+
+       4)     Declare pointer to an arrays and array of pointers
+       5)      write progarm for pointer to an arrays to point 1D arrays
+       6)      How to dynamically allocate 2D Array using pointer to
+an array and array of pointers
+       7)      Declare pointer to functions and where you used in project
+       8)      what is system call?
+       9)      what is threading?
+       10)    How to create the thread write syntax
+       11)     what are the problems using threads
+       12)     what is user space and kernel space ? tell there difference
+       13)     initial stage of process
+
+      14)     what is malloc,calloc and realloc? difference,  and
+progarm for using realloc
+      15)     int * ptr = NULL;
+                int  i = 0;
+                ptr = (int *)  malloc (20) ;
+
+
+               for (; i < 4; ++i)   {
+                  *ptr = i+10;
+                  ++ptr;
+               }
+               free(ptr);
+
+              The above  program working or not, what is your observation.
+       16)   what is memory leak? how to find it
+       17)   progarm Reverse the Linked List
+       18)   segments in memory
+       19)    program for pointer to function ?
+       20)    Tell me Your project  with skeleton structures
+II round:
+
+
+       1)     Tell me your project
+       2)     program for pointer to function
+       3)     how to use gdb
+       4)     asking in my Layer 4 in project
+       5)     difference b/w     IPV4 and IPV6
+======================================================================================
+NISSON & HCL
+---------
+1)String Concepts:
+	Examples : strrev,strstr,strcpy,strlen,strcmp,(write a own function)
+2)Data Structure :
+	1)Reverse a singly and doubly link list
+	2)Remove a duplicate node in list
+	3)insert a node in singly and doubly list
+
+3)write a own function for memcpy and memcmp and memmove
+4)to set a particular  bit
+5)to reset a particular bit
+6)reverse a bit
+7)sorting programs,
+	1)Insertion sort, selection sort like that
+	2)linear search, Binary search programs
+8)Delete a particular node in singly and doubly link list.
+9)Reverse a bits in integer.
+10)Count a number of set bits.
+11)write a own function for atoi and atof
+12)Basic programs also
+		fib,factorial etc.
+13)OS Concepts:
+14)Diff BW process and threads,
+15)fork()
+16)what is a thread
+    -context switching
+    -inter process communication
+    -preemptive and non preemptive process
+
+========================================================================================
+CORNET
+-------
+1. Sock_Dgram uses Protocol
+A. Ipv4, b,Ipv6
+      2 . void main(){
+		Fork(); fork();
+		Print(“hello”);
+}
+	How many times print?
+3.In Preprocessing which extension create a. .a,  b. .i,  c.  .c
+4. In compilicated declaration char *arr[3]; how to tell?
+5.int **p;
+P= (int **) malloc(5);
+How to free p?
+6.malloc return NULL or 0?
+7.void main(){
+	Main();
+}
+Execution time which occur?
+6. union val{
+	Int a;
+	Int b;
+}v;
+v.a =10;
+v.b=20;
+print the val of v.b?
+8. char *p = hello;
+Increment p; print the val of p?
+9. What will be output if you will compile and execute the following c code?
+#define x 5+2
+void main(){
+    int i;
+    i=x*x*x;/* 5+2 * 5+2 * 5+2 */
+    printf("%d",i);
+}
+
+(A) 	343 	
+(B) 	27 	
+(C) 	133 	
+(D) 	Compiler error 	
+(E) 	None of above 	
+Answer : 27
+
+ 10. What will be output if you will compile and execute the following ccode?
+#define call(x,y) x##y
+void main()
+{
+int x=5,y=10,xy=20;
+printf("%d",xy+call(x,y));
+}
+(A) 35
+(B) 510
+(C) 15
+(D) 40
+(E) None of above
+Answer : 40
+
+11. int **P;
+	Print (sizeof(P));
+Answer : P occupies 4 bytes (in 32 bit OS) or 8 bytes (in 64 bit OS)
+12. in 64 bit, how many allocate for int?
+13. how to handle the signal 
+	A. signal, b.sigaction
+14. IN ctrl z Press which signal appear
+15. which signal not handle ?
+	a. kill , b.sigalram
+16.which system call create new Process?
+	a. Clone , b.exec
+17. In file stored in  unix
+	a. block b. Inode
+18.In enum Sunday 0    tues 5  fri 7 what come for sat?
+19.In bubble sort feghijl how to sort?
+20.IN push 1, 2, Pop 2 push 1, 2 pop 1, 2 push 2 pop 2  pop the value is
+21.2, 1, 5, 4, 3 how to sort the bubble?
+22. 17 left small value right big value which sort?
+23.In thread, how many segment use?
+24.IN mov, add which use a. op code b. c 
+25.assembly convert machine code
+	a. compiler  b.interpreter
+====================================================================================================================
+OTHERS
+------
+
+1.file reverse
+2.storage class specifiers
+3.single and double link list
+4.int main()
+	{
+		char str[20]="hellow";
+		char *const p = str;
+	
+		*p = 'M';
+		printf("%s\n",str);
+		
+		return 0;
+	}
+5.typedef int *ptr;
+	ptr p1,p2;
+
+6.enum
+7.void main()
+	{
+		int i=5;
+		int *ptr = &i;
+		int *pptr = &ptr;
+
+		printf("%p%p%d\n",ptr,*pptr+1,*ptr+1);
+	}
+8.how will you free
+	#define MAXROW 3
+	
+	int main()
+	{
+		int **P,i,j;
+
+		p = (int **)malloc(sizeof(int p));
+
+		reuturn(0);
+	}
+9.tcp/ip ?
+10.system call?
+11.tree traversal EACKFHDBG
+12.bineary trea search
+13.IPV6
+14.Output
+
+	int main()
+	{
+		char *arr[2] = {"HELLO","BYE"};
+
+		printf("%s\n",arr[0]+1);
+		
+		return 0;
+	}
+
+
+
+
+
+
+
+
+Technicolour written test questions:
+====================================
+
+SNIPPET 1
+
+Find 2 logical errors in the below code snippet
+Searches in “table” for “index” matching “key” and returns the corresponding data 
+
+Typedef struct {
+	Int index;
+	Int data;
+}item;
+
+
+Int getdata(item * table , int key)
+{
+	Int i ;
+	For (i =0; i< sizeof(item); i++) 
+	{
+		if(table[i].index == key) break;
+	}
+	Return table[i].data;
+}
+
+Int main()
+{
+	Item maptable[] = {{1,10},{2,20},{3,30},{4,40}};
+	printf(“Value of data for index %d = %d\n”, 2, getdata(maptable,2));
+}
+
+
+
+SNIPPET 2
+
+#define Error(str) printf(“Error %s\n”, str); exit(1);
+Int main()
+{
+	Int fd;
+	Char str[20] = “Hello Test me”;
+	if(fd = open(“xx”, O_CREAT | O_RDWR)) < 0)
+		Error(“open failed”);
+	if(write(fd, str, strlen(str) < 0)
+		Error(“write failed”);
+	if(read(fd, str, strlen(str)) < 0)
+		printf(“file read %s”, str);
+	close(fd);
+
+}
+
+SNIPPET 4
+
+Find 2 logical errors in the code snippet below
+The purpose of send util_SendToUart is to translate \n to \r\n and send it to output using the uart driver. There can be more than one \n terminated line 
+In the input string.
+
+Void util_SendToUart ( char *string, int len)
+{
+	I = 0;
+	While (i <len)
+	{
+		For (j = 1; j <len; j++)
+		{
+			if(string[j] == ‘\n’)
+				Break;
+		}
+		String[j] = ‘\r’;
+		String[j+1] = ‘\n’;
+	}
+     write_uart(&string[j], j-i+2 }; //write function takes input string and
+ //number of characters 
+     I = j+1;
+}
+
+
+SNIPPET 5
+
+Try making the given code below and see what needs to be fixed to make it work.
+
+Static void mpegt_SetMemSource(
+		Mpegt_Object2 mpegtObject2,
+		eMpegt_Processor processor,
+		Mpegt_Source2 *src2) 
+
+{
+	Pk_event * volatile event_p = NULL;
+	Ui8 path_Name[16];
+	
+switch(processor) 
+{
+		Case kMpget_AudioProcessor:
+			//create memory to audio path
+sprint(pathname , “MPGET %s”, “Audio”);
+pathName(strlen(pathName) - 1 ] = ‘\0’;
+break;
+		Case kMpget_VideoProcessor:
+			//create memory to video path
+			sprint(pathname, “MPGET %s”, “MemSrc2Video”);
+	pathName(strlen(pathName) - 1] = ‘\0’;
+			break;
+ 	Default:
+}
+	 
+}
+
+SNIPPET 
+What’s wrong ?
+
+Uin32 parseHeader()
+{
+	if(...)
+		Return -1;
+	Return 0;
+}
+
+
+Evdam main( char * string , void * data)
+{
+	if(parseHeader(...) < 0)
+	{
+		HandleError();
+	}
+	Return OK;
+	
+}
+
+
+SNIPPET 8
+The purpose of the below function is to make 
+
+
+Mirafra
+
+Written test
+
+1.create stack using linked list
+
+2. Fun {
+	fun();
+   }
+	
+   Int main()	{
+	fun();
+   }
+Ans. stack overflow
+
+3.Reverse digit 12345 to 54321 using bit operation ?
+Ans. 
+	For (b =0 ; a> 0 ;)
+	{
+		b = (b * 10 ) + a%10;
+		a = a/10;
+	}
+3.a) why bit operation is fast ?
+
+4.Array sorting?
+5.find a loop in single linked list ? what is the order of search particular
+  element?
+6.
+
+
+Company: tata elxsi
+Interviewr’s:
+
+1.toggle a bit fun(a, position)
+2.process vs threads?
+3.const int a = 10 vs #define a 10
+4.single linked list reverse
+5.reverse a string using pointers and array?
+6.compilation process/steps?
+7.can we use global variables in threads?
+8.linux boot process?
+9.lipc vs ripc, what are ipc mechanism we have ?
+10.fork vs exec ?
+11.how arp works ? layer 2 or layer 3?
+12.whar are the types of vlan?
+13.how do you get 99the element in snmp out of 100?
+Ans. 
+14.how do you communicate user level process to kernel level process?
+15. Int main() }
+	printf(“TATA”);
+	fork(); fork(); fork();
+    }
+
+Int main() }
+fork(); fork(); fork();
+	printf(“TATA”);
+	
+    }
+16. If two threads trying to modify variable ‘a’  then how do you protect it?
+17. If one thread changing variable a = 5 to 10. Then how other threads are 
+    Getting notified when variable changed to 10?
+18. What are all arguments in pthread_mutex_lock() ?
+
+
+
+
+American megatrends pvt india limitied
+Interviwer: 
+
+Write a socket programming, include header file also?, whole code?
+Shared memory programming, whole code ?
+Linked list loop find?
+If you find the loop, you need to find the exact first node?
+intention without thread and process, how can
+Handle the multiple client”
+NotE: select system call.
+How system call working? purpose?
+Fread and read.? We can read fread right rather than read?
+Rotate the array with n positions?
+How the data copy is happening from user to kernal mode?
+
+
+L&T
+Interviewr: arun,vishwanth
+
+1.Swapping a single bit within a number
+2.How you are executing set of statements before executing main?
+   Ans.pragma, attribute
+3.structure given, how the size is expected and actual with padding?
+4.why strcuture padding is implemented?
+5.why we need virtual memory even we have 4GB RAM?
+6.why pages are 4K sizes?
+Ans.
+Maxwell: if chunks are smaller size, it is difficult to manage memory management.
+7.how the linux device driver working?
+Ans.
+Maxwell: copy_to_user() function copies data block from user space to 
+Kernal space.
+8.how the modprobe() works ?
+Maxwell: program to remove or add modules from the kernel.
+9.
+
+
+Company: Alcalent -lucent
+1.what is software interrupt and hardware interrupt ?
+2.
+
+
+
+
+
+
+
+
+Company: Tata Elxi
+
+
+1).Data types- static vs extern, 
+2).inline vs macros
+3).Structure vs union, bitwise operators
+4).Single Linked list swapping nodes
+5).Thread vs process
+6).Fork vs exec
+7).
+
+Company:Tata Elxi
+Interview:
+
+
+1).doublend queue implementation.
+1.a) queue’s?
+2).which datastrcture used to perform recursion?
+Ans. stack
+3).string palindrom recursion ?
+4).project, rip ospf,ospf states?
+5).hop count , ttl in rip context?
+6).
+
+company:Tata Elxi
+
+1).virtual address
+2).memory split
+3).how to trigger timely event in a same process.
+NOTE: timers
+4)insert a node in sorted linked list.
+
+company:Tata Elxi
+
+
+0).Bitwise operation: setting bit, toggle, count 0 in number
+1).Ll : insert node
+2).String rever, substring
+3).Which process takes time
+4).Fork, vfork, exec, wait
+5).Pthread_join
+6).Vxworks scheduler
+
+
+Company:tata elxi
+
+1).count number of zero’s in a given number?
+2).highest number of repitated character in a following string?
+  Input: “Welcome to tata elexsi”
+3).swap/reverse a last two nodes in a single linked list?
+4).which ipc mechanisum is fast? Why?
+5).pipe vs named pipe?
+6).where we use pipe’s? 
+ans).parent to child.
+7).how you will debug if you found packet loss on interface?
+8).scheduling algorithms? What are they?
+9).what is timslice?
+ans). Giving following opportunites to the process we can call it as time
+      slice - memory , cpu , i/o, network.
+      Time slice.
+10).write a declaration of function pointers and where you were used in 
+   Your porject?
+11).macro vs inline?
+12).orphan process vs zombie process?
+13).how to overcome orphan and zombie process?
+14).semaphore vs mutex?
+15).deadlock?
+16).how to overcome deadlock?
+17).explain your project?
+18).can we use pipes between two different process rather than parent to 
+    Child ?
+ans).i guess NO.
+
+
+
+
+
+
+
+Company: gigamon
+
+
+1. strtok
+2. toggle m to n bits
+3. process address space
+4. structure vs union
+5. tell about your project
+6. Socket system calls
+
+
+Company: Western Digital
+Intervie
+1. Introduce about myself
+2. JD understanding
+3. Previous project explanation
+4. I2C protocol
+5. RTOS
+6. What are the storage classes
+7. Static storage class
+8. Why not initialised variable stored in bss
+9. How bss set 0 to uninitialised variable
+10. Can we apply to function?
+11. Where the local variable is stored
+12. Stack overflow, stack underflow
+13. What happens in stack overflow like stack section into heap?
+14. How to avoid stack overflow?
+15. How free knows how many bytes to free?
+16. Volatile qualifier
+17. Where we use const?
+18. Volatile const together for a variable?
+19. Use case, Purpose of volatile const variable?
+20. What is structure padding? Why we need it?
+21. Inline Vs Macro
+22. When we will use inline / Macro
+23. Priority inversion
+24. How to avoid priority inversion
+25. Reentrant function
+26. Priority inheritance
+27. Watchdog Timer
+
+
+Company : NEC Telephonic 
+
+1.which datastructure you are using in your project.
+2. Array vs datastructure
+3. What is the size of below structures?
+   Struc {
+   	Char c;
+	Int  i;
+   }
+
+ 	Struct {
+		Int i;
+		Char c;
+	};
+4.how to eliminate padding ?
+5.sockets system calls?, how you will replace accept system call with non-blocking system call?
+ans). Select.
+6.snmp
+
+Company: NEC
+
+1.Shared memory
+2.Linked list reverse
+3.Finding repeated characters in a string
+4.Memory management
+5.Vlan
+6.Write a c program for storing mac address
+7.How printf is implemented internally
+8.How arp wrks
+9.Cscope implementation internally
+10.Dynamic memory allocation
+11.Where the variables are stored  in memory for shared memory
+12.Arguments passed for shared memory
+13.Tpid in vlan
+14.What is default vlan
+15.Why stack grows backward and heap grows forward
+16.did fopen () and not did fclose() what will happen ?
+17.gdb and btdecode what content the crash log will contain in both case
+
+memory leak
+18.then about project explain a traffic drop bug
+19.then explain about any protocol issue
+
+Company:gigamon
+
+in gigamon
+1st round : 
+
+1.project software level explanation on how xcvr works
+2.about memory segments
+3.what is used to commnicate between cpu to asic and asic to phy
+4.which ipc we are using
+5.socket and program
+
+2nd round:
+
+1.what will happen after giving gcc a.c ---- inside
+2.how a.out is getting the output explain internal process and what will linux
+  do after giving a.out
+3.after fork doing multithread, am having int a; in parent whether this
+  variable will copy in fork ?
+4.If not what is the way to access the same variable in parent from fork
+5.Then asked about Hardware arc
+
+
+
+
+
+NEC F2F
+
+Cumulative questions of all interviews
+
+1.where Shared memory will attach in process address space and why?
+  What are the system calls you used to attach and how?
+2.Linked list reverse
+3.write a program to add a node in circular linked list
+4.Finding repeated characters in a string
+5.How printf is implemented internally
+6.Memory management
+7.write Vlan header and expain each bit
+  What is Tpid?
+  What is default vlan?
+  Can vlan 0 exists?
+  What is the max vlan num?
+  Any other vlan’s you know? 
+  NOTE: intention is other than 802.1q vlan whether you worked. 
+8.How arp works
+9.Cscope implementation internally
+10.Dynamic memory allocation.
+11.write a function for array of pointers and assign each and explain how 
+   It works?
+12.*c[] = “Welcome to NEC”;
+   What is the output of *--++c+1 ?
+13.Where the variables are stored  in memory for shared memory?
+   Arguments passed for shared memory
+14.Why stack grows backward and heap grows forward
+   Siiyer: If stack goes backward heap goes forward viceversa.
+15.Makefile.
+16.Touched all IPC mechanisms.
+17.scheduling algorithms
+18.Difference between process and thread how it will store in memory segment
+19.Find whether is bit set in given position if set then do reset that bit.
+20.char c = 128;
+   c>>2 ?
+   How you make not to come one’s while we right shifting a variable?
+21.More questions in project on how Asic and phy communicates, phy to xcvr
+   Communication?
+22.Spanning Tree protocol?
+23.How phy knows an sfp inserted
+24.How to access the variable which is defined as void pointer?
+   Where we use void pointers?
+25.what is dangling pointer ?
+26.where you used volatile in your code ?
+27.MACRO vs Inline?
+28.what is the size of below structures?
+struct {
+		Char c;
+		Int i;
+   	}
+
+      Struct {
+		Short s;
+		Char c;
+		Int i;
+     }
+
+	Struct {
+		Char c;
+		Int i;
+		Short s;
+	}
+29.what is padding? What are all the ways to eliminate?
+30.write function pointer declaration? Where you used in your code?
+31.Software arch of our project?
+32.
+Char *a="hello"
+Char *b="world"
+Strcat(a,b);
+Printf("%d%d",a,b);
+what will be the output
+33.Question on *p++ and ++*p
+34.In Memory map where shared mem variables store? 
+35.what is the purpose of socket ?
+   If i have 3 process in my device, in what way we will communicatie to 
+   Each other?
+36.what is daemon process?
+37.how to toggle particular bit in a variable?
+38.do you know trees?
+39.string reverse program?
+40.do you use valgrind?
+41.explain process address space diagram completely?
+42.fopen vs popen?
+43.how fork() will work?
+44.what FILE* contain?
+45.what is inode?
+46.what is kernel stack and user stack?
+47.what is purpose of multithreading?
+48.how you will use variable length array?
+49. Int index = -1;
+    Char c[index];
+    Whether program compile ?
+
+Company: sanmina,Tambaram
+
+
+1. Count set bits program?
+2.why padding in structure? How do you eliminate? 
+  What if i put #pragma pack(2) 
+  In below structure?
+  Struct {
+	Int i;
+	Char c;
+	Float f;
+	}
+3.LE programm?
+4.how do you find number of children in a particular process?
+  NOTE: ps command with options as linux command.
+        Are there any options?
+5.which sockets you are used?
+6.how do you communicate between threads?
+  HINT: interviewer told we can use message queues between threads.
+7.where we use function pointers?
+8.linked list loop?
+9.ISR function working?
+10.how do you handle interrupts?
+11.what is interrupt latency?
+12.if you handling one interrupt, meanwhile another interrupt comes how you
+   Will handle?
+13.how do you design ISR’s?
+14.describe pthread_create behaviour and arguments?
+15.what is the priority of newly created thread?
+16.how do you use static variable in another file?
+17.what is volatile? Can i put const volatile a = 10; ?
+18.how do you choose IPC mechanism?
+19.what are the states of process?
+20.fork ?
+21.process vs threads?
+22.why we are going threads?
+23.how do you find state of a process?
+24.how do you implement multithreaded server?
+25.how do you debug/handle crash?
+26.gdb steps?
+27.how do you handle release bugs, if your timeline comes closure?
+28.what if you are not able to repro issue in locally but issue observed
+   In customer network?
+29.how do you confirm your fix not causing any trouble for other products?
+30.what are the steps you followed when you got assigned with bug?
+31.explain about your project?
+ 
+
+
+
+
+
+
+Company: Aricent
+
+Interviewee: BR
+
+1.Explain DHCP full flow.?
+2.What is dhcp relay and if two relay’s are there in topology what is the flow.?
+3.What are all the header fields will change from dhcp client to server flow.?
+4.How do you use two threads which communicates your dhcp structures.?
+5.What is the other way than locking.? (Atomic variable.)
+6.ospf flow.?
+7.how do you debug when you get a issue from customer?
+8.can we use unions in your dhcp structure?
+9.int *ptr = 10; tell about this.?
+10. int a[] = {10,20,30} ; int *p = a; values of ++*p; *p++;
+11.write a recursive functions to find sum of number between 4 to 8?
+12 implement the memmove().?
+13 how do you find loop in a linked list.?
+14 how do find memleak.?
+15 question about display command in hdb.?
+16 write logic to delete node in linked list(take care of all the possible conditions).
+17 when will the mem created for structure?
+
+Company: comcast
+
+=====================
+1.how first time ping works? 
+2.mutex ki semaphores ki difference
+3.Linux system calls internal functionality?
+4.comcast is more about linux
+5.IPC and linux commands
+6.shell scripting expect cheyochu
+
+VP round
+1.C, Networking, Linux, Embedded basics
+2.meru btech ECE background ayite Embedded aduguthundi
+3.manaki teliste chepochu ledante ledhani chepochu, just confidence check
+ chestundi
+4.process states, compilation process.
+5.generic questions kuda adugutharu
+nakaite neku edho power vachesi HCL gurinchi edina jaragalante em Jaragalanukuntav ani adigaru
+
+Company:comcast
+
+1st round:
+1.priority inversion
+2.priority inheritance
+3.priority ceiling
+4.interrupt latency
+5.process vs threads
+6.why thread is lightweight ?
+7.explain IPC mechanisum?
+8.array of pointers?
+9.declare 2D array?
+10.declare function pointers?
+11.int a = 10;
+   Int *p = &a;
+   ++*p = ?
+12.why padding? How you will eliminate?
+13.set a bit?
+14.pointer to an array vs array of pointers
+15.
+
+Networking:
+1.how ping works ?
+2.what happen when you enter url in your browser?
+3.how ping utility escapes all L7,6,5,4 headers?
+4.arp and proxy arp?
+5.what is LSRR?
+
+
+Manager round:
+1.process vs threads
+2.how “cat file.txt” works?
+3.write multithreaded program to print 1 2 3 4 5 6 …
+  Eventhread should print even numbers and odd thread should print odd numbers
+  NOTE: using conditional variable?
+4.difference between mutes vs semaphore?
+5.which sockets are you using in your project?
+6.how fork works?
+7.
+
+VP round:
+1.What is your strength
+2.What is your weakness
+3.When you will happy
+4.When you will sad
+5.Tell about your family
+6.How you will choose ipc mechanism
+7.How cat command works internally
+8.Explain how you will fix CFD
+9.Do you have any offer
+10.How much you are expecting CTC ?
+11.Comcast standard
+12.What ipc will use in your project
+
+
+
+company:Comcast
+
+
+1)program to find the system is little endian or big endian
+2)unsigned long size in 32 bit --  what s the logic to store 64 bit data in 
+ long ... take userdefined data type
+char a = 250
+char b = 255
+3)program to swap num without using third var
+4)thread program using mutexes and conditional var
+5)define a single macro that clear the bit at given position 
+6)set bit at given position
+7)reverse of linked list and explanation on it
+8)diff b/w mutexes and threads
+9)how we can find memory in linux
+10)at are the types of shell in linux --- (bash,csh..etc)
+11)define a fun to swap numbers and call that fun from main values before swap
+   and after swap in main fun
+
+Gigamon:
+----
+Candidate: BR.
+1st Round:
+-----
+1. Write a API to swap first and last bytes in a 4byte number?
+2. Write a API to find the no of set bits in a given number?
+3. how to you find loop in a linked list, write code.?
+4. what IPC mechanisms you know.?
+5. how do you communicate in threads.?
+6. what are related processes.?
+7. what is semaphore write how do you use it to synchronise.?
+7. are Mutex and semaphore same.?
+few more on C
+
+2nd Round:
+-----
+1. Brief me about your self ?
+2. Given a pointer to a node how will you add new node before the given pointer consider no header is given.?
+3. Write a program to convert little to bigendian.?
+4. how will you choose which IPC to use.?
+5. Why sharedmemory better.? (as I said)
+6. write a Macro to find the square of the given number or Epxression.
+
+Discussion on Each answer Given or written.
+
+3rd Round:
+-------
+1.
+ NUM   	 O/P
+  1   	 1,1
+  2   	 1,2
+  3   	 1,3
+  4   	 1,4
+  5   	 2,1
+  6   	 2,2
+  7    	 2,3
+  8   	 2,4
+  9   	 3,1
+  10   	 3,2
+  11   	 3,3
+  12   	 3,4
+  13   	 4,1
+  ...   	 .... and so on ...
+
+write a program which prints the outouts for the given number. Only number is given, shoud not take any array or list. need to print with logic.?
+
+2. Program to know the no of clear bits in a given number.
+
+3. How do you find the sizeof structure without sizeof(). Then discusion on padding and other stuff.
+
+4. Given a position of the node, add a new node after the position.?
+
+5. in file 1 static int a ; in file 2 extern int a ;
+    will this work?
+    why it won't work?
+    when will we get this error.?
+    how does complires know that it is not valid.?
+
+6. char *a   = "Gigamon";
+   char a[7] = "Gigamon"; what are these.? is both same ? what is the difference.?
+
+7. What is DHCP, How does it works..? what is that you did in DHCP.? isn't DHCP opensource..?	 
+
+8. what is STP, how does it works ..?
+
+9. What is ARP.? Explian Working..?
+
+10. How Many VLANs we can have in a switch.? What is the sizeof VLAN-ID.?
+
+11. Why are you looking for a change..?
+ 
+4th Round:
+—----------
+Managerial:
+-----------
+1. Brief me about yourself.
+2. how is your workflow in your current job.?
+3. What type work you do.?
+4. what are the best moments in you work creer.?
+5. write a code to print -5 to 5 using recursion..? after writing .. can you reduces the number of recursive calls.?
+6. Explain me about your products.?
+7. where does your products used.?
+8. what is IoT.?
+9. In my office I am connected with all my devices... Is it also a IoT.?
+10.What is the challenging work you did.?
+11.Why do you feel it has challenging.?
+12.what skillset does a sustenenance engineer need.?
+13.what skillset does a developer need.?
+14.If a newbie is coming to IT what piece of advice you give him to become good sustenance /  Develop Engineer .?
+15.what is UT.? why do you need to do UT..? Does it different than what QA team is doing.?
+16.Does your code tested by QA before commiting.? if QA is testing it does UT really needed.?
+17.When New enhancement comes, how will you aproach.? what informantion you will give about your work plan.?
+18.Why are you looking for a change.?
+19 HCL has many clinets Did you tried in them.?
+20.What do you do in free time.?
+Questions are mostly on what we have beed said and checking the confidence.?
+
+
+
+Company: Aricent
+-----------------
+1.DHCP
+2.what is interrupt?
+3.signal vs interrupt?
+4.how you handle interrupt?
+5.function pointer purpose ?
+6.any L2,L3 protocol you know/worked ?
+7. Write a C program for below:
+   Input: “hi i am suresh from india”
+   Output: “hi i am from india”;
+8.semaphore vs mutex difference?
+9.dangling pointer.
+
+
+Company: Scientific games
+------------------------
+1.Print odd even numbers consecutively using threads one thread odd one thread even.
+2.Given a tree print left view, means u stand left side and see the tree what numbers we see print those.
+3.Given a linked list how to find if there is loop
+4.Abt gdb.
+5.How you detect mem leak
+6.Img compression techniques
+7.Img standards
+8.How to identify data corruption
+9.Producer consumer using sockets
+
+
+Company” aricent
+----------------
+
+1)Converting string MAC address to integer.
+2) difference between trunk and access port and vlan the header
+3) how do you know the vlan is present or not
+4) how to get the IP address from DHCP
+5) how to allocate the memory of two structures using one malloc
+6) what is function pointer and how it is used and it declaration
+7) given number is 2 power or not
+8) how free know how much memory need to be free
+9) how rellocate will work
+10) find the loop in linked list
+11) IP table, arp table, mac table
+12) reverse the linked list
+13) find the odd count  for repeated variables in the array 1 to 100 using xor
+14) difference between thread and socket
+15) reverse the given number bits
+16) swap n node from starting and last nodes (if 2 is given then swap 2nd and last to 2nd node)
+
+
+Tech Mahindra:
+Thread vs process, 
+what are sharing between threads and process
+Fork, what are actually sharing.
+Segmentation fault 
+Netconf
+Boot process 
+Compilation stages 
+Headers vlan, ethernet, STP(spanning tree protocol) 
+Ip table 
+Reverse linked list 
+Merge two linked list 
+Two linked list, will meet at one node, what is the merge node ? whole program
+Delete nth node
+Set, reset bit 
+Int a = 1111; how many ones?
+Socket, client-sever model?, argument also?
+UDP Vs TCP?
+-Every time UDP lo IP details passing, but not in TCP after connection established 
+How you know VLAN is established?
+Bad pointer
+Dangling pointer 
+-if ping www.meta.com fails,can we conclude www.meta.com is not reachable ?
+ (what if i can www.meta.com is still reachable/load in web browser?) 
+q)Will router pass/forward/route broadcast address(255.255.255.255) packet ? if no, why? If yes, in which use case?
+ans). Yes in this case. When we assign/config router/switch to dhcp relay, at this scenario router forwards packet to required path to get ip address. 
+q).What is the mistake on 127.0.0.1 loopback address?
+ans). 127.0.0.1 - comes in Class A address, hence we can’t assign 127 range address to any device, so we indirectly lost some ip’s for assigning this 127 range class A address to loopback address.
+Eg: ipv4 → 127.x.x.x is a loopback address, but in ipv6  → ::1 (learnt lesson by ipv4 mistake)
+
+
+
+
+
+
+
+
+
+
+
+
+Tech mahindra:
+—-------------
+1.thread vs process
+  Which is faster execution
+  Advantages
+2.how a packet is traveled from one end to another end ?
+3.how ARP works ?
+4.loop logic 
+5.how to find last 3rd node
+4.global static, how do you use ?
+5.”1234” , add each one in arithmetic?
+6.switch vs router 
+7.host to host travelling ? within same subnet/other network?
+8.collison , domain?
+9.core dump, how do you use in your project ? how to check structure variable ?
+  Gdb frame?
+10.
+
+Capgemini
+—---------
+1.dhcp,dns packet topologie path
+2.core dump, print, frame, error,signal, backtrace.how to debug, how to root cause
+3.when crash issues? - double free, dangling pointer?
+4.routing tables - what are fields ?
+5.Mac table
+6.Forwarding table
+7.gdb
+8.broadcast, collision domain?
+9.what happened to packet when collision occur?
+10.reverse linked list, loop findout
+11. M to nth bit set
+12.dns uses?
+13.Trees?
+14.array representation?
+15.ip string —-> convert to num ?
+16.”123456” —> 1+2+3+4+5+6?
+17. C compilation steps?
+18. Mac validation ?
+19. Where Malloc is stored ?
+20.Hash table ?
+21. Cscreen 
+22. Hardlink vs softlink?
+23. Substring program
+24.3 hosts, h1, h2 – same subnet, h3 - another subnet . h1 -> h3 , h2 -> h3 how packets flow is there ?
+25.Kernel concepts
+26.Context switching, uboot, file system, socket, types of socket , how to determine udp/tcp socket, where you used socket, ixigia, valgrind, spirint(Traffic generator), bridge, hub, acl(with url)., igmp, arp , dhcp , dns.
+27.Firewall - how linux device ?
+28.Yaml, tcpdump, iptables, netfilters.
+29.unicast, broadcast,multicast - example protocols
+30.vlan, trunk port, how many vlans, access port
+31.strings, strrev, strcpy
+32.delete DLL, add a node
+33.working in hcl , how many instances of i in line of string ?
+34.recent challenging bug, recent core dump.
+35.
+
+
+Gns
+—--
+4.switch vs L3 switch difference ?
+5.dhcp relay? 
+3.
+
+
+
+Aricent
+
+
+1.dynamically create memory for 2D array.
+2.what is the output ?
+  
+#include <stdio.h>
+int main()
+{
+int arr[] = {1, 2, 3, 4, 5};
+int *p = arr;
+++*p;
+p += 2;
+printf("%d", *p); //3
+printf("%d", arr[0]); //2 
+}
+
+3. You need to update in same linked list
+i/p linked list: head -> 9->9->9->9
+p/p linked list  head ->1->0->0->0->0
+
+4. Write a function in same string 
+   i/p - bbbcccddf  o/p - f
+   i/p - tteddffp   o/p - ep 
+
+
+
+
+Nokia 1st round:
+1.explain how osi layer works?
+2.write ethernet frame formate?
+3.what is vlan, how it works? add vlan field to ethernet frame and explain?
+4.write a program to add contiguous memory location for double pointer?
+  how to set/get data?
+5.single linked list palindrome?
+6.how to check two linked list's are intersect ? optimized method?
+7.what is icmp, why we use icmp?
+
+
+Nokia 2nd round:
+1.ethernet frame + vlan formate?
+2.linked list add and delete?
+3.function pointer declaration with example ?
+4.STP,DHCP,ICMP,ARP ?
+5.how come STP knows , if it receives same packet twice ? 
+5.watchdog, how watchdog monitor about process died ?
+6.how can you debug in case a icmp packet is received at ethernet interface, 
+  but got failed to reach ICMP layer? how will you debug ?
+7.what are the types of semaphore ?
+8.what are pthread call's you know ?
+9.how a process and associated 3 threads occupied in process address space ?
+10.static variable in a.h, 1.c and 2.c ---> a.out, how this works?
+11.what is structure size? purpose of alignment ?
+   typedef struct sll {
+       int data;
+	   sll_t * pnext;
+   }
+12. main()
+ {            
+    register int x = 5;
+    int *p;
+    p=&x;
+    x++;
+    printf("%d",*p);
+  }
+  
+13. p = malloc(8).
+   will it allocate 8 bytes or more? how 'p' knows how many bytes allocated while 
+   free()?
+
+
+
+
+
+Capgenmini
+
+1.how to generate seg fault?
+2.what is wild, dangling pointer?
+3.array[10] ={ 1,2,3,4,5,6,7,8,9,0}
+  Odd index’s - odd values
+  Even index’s - even values
+4.create 2 threads, t1 thread and t2 thread, having global array 
+  array[10] ={ 1,2,3,4,5,6,7,8,9,0}.
+  So that , t1 thread first 5 indices and t2 thread read next 5 indices, write a
+  Program ?
+5.socket system calls?
+6.
+
+
+Gigamon 1st round:
+—-----------------
+1)reverse a bits in a num?
+2)printe single occurance characters only in a input string?
+i/p: dummy   
+o/p: duy  
+i/p: projectjpabcd
+o/p: rojetjabd
+3)reverse a double linked list?
+4)how pthread's communicate ?
+5)i have only address of a node which you need to delete in a single linked list.   
+  how do you delete ?
+
+1->2->3->4->5
+        0x400
+
+Date
+
+wipro
+-----
+1)int a[]={1,2,3,4,,5};
+printf("%d, %d, %d, %d\n",a,a+1,&a,&a+1);
+
+2)int *p = 1000;
+printf("%d, %d, %d\n",p,&p,*p);
+
+3)func_a(int *a) {
+     a = malloc(sizeof(int));
+     *a=10;
+ }
+main(){
+ int *a  
+ func_a(a);
+ printf("%d", *a);
+}
+
+4)char c;
+for (c=0;c<200;c++)
+printf("%d ",c);
+
+5)char arr[]="123abc27de1"; output => 151
+
+6)in linked list head-> 1 ->0 -> 0
+print output as 100 in bitwise formate
+print output as 100 as a number hundred .
+
+7)how to check palindrome or not in single linked list ?
+
+8)height of tree?
+9)binary tree vs binary search tree ?
+
+10)n1---router----n2 , how arp works?
+
+
+
+Gigamaon 2nd round:
+—------------------
+1)
+a=10, and b=20;
+how a can be 10 with any operators?
+int t=0;
+a = a^(t=a^b);
+
+0 0 0
+0 1 1
+1 0 1
+1 1 0
+
+2)strcpy and strrev
+3)palindrome in linkedlist ?
+  i/p: 12321 or ABCBA
+
+4)semaphore vs threads
+5)how do you debug packet loss once you received at interface ?
+6)how ARP and ICMP works?
+7)where we use RAW socket ? purpose?
+8)which IPC mechanisum you used?
+9)TCP socket?
+10)sockets work on kernal side ?
+ans)yes, whole TCP/IP stack itself is kernal.
+
+
+
+gigamon 3rd round:
+------------------
+1) create 2d array(int and char also) with 2d pointer ? 
+2) if n=3, reverse every 3 nodes in linked list?
+3) count number of Binary 1's in a number ?
+4)what will be shared across threads?
+5)what IPC you used in your project?
+6).what is reenterant function?
+7).what is rest API?
+8).what is the purpose of linux sockets? how it is different to tcp/udp sockets?
+9).what is race condition?when it comes?how can you overcome?
+10).how two threads do execution?
+11).how you debug while logic?
+12).how do you debug more memory utilization bug?
+
+
+gigamon managerial
+4th round:
+------------------
+
+1.explain architecuture/component of your project.
+2.t1 writes a, t2 prints a, t1 writes b, t3 prints b ...
+  a,b,c,d,e,f,g,h,i,j .....
+  write a sudo code for this.
+3.tell about your project.
+4.how cvr/process sends to cloud?
+5.what is your role?
+6.why you want to move from your organization?
+7.what are the enhancements you worked ?
+
+
+
+Genesys:
+
+1st round 
+---------
+1.array=[9,7,6,5,4,3,2,1,0]
+  find range(0-7)
+2.shallow copy vs deep copy?
+3.polymorphism types and examples?
+
+
+
+Vocera
+
+1str round
+----------
+write a string program?, take input from stdin.
+
+i/p: "  hi how are you   ?   "
+o/p: "hi how are you   ?"
+
+int main()
+{
+        char s[128] = "  hi how are you   >  ?  " ;
+        int i =0;
+        int min=0,max=0;
+
+        for(i =0; i<strlen(s); i++) {
+                if((s[i] != ' ') && (!min)) {
+                        min = i;
+                }
+                if((s[strlen(s)-1-i] != ' ' ) && (!max)) {
+                        max = strlen(s)-1-i;
+                }
+                if(min && max)
+                        break;
+        }
+        for(i = min; i<=max; i++) {
+                printf("%c,",s[i]);
+        }
+
+
+}
+
+
+Cyient:
+
+—------------
+1)function pointer
+2)priority inversion
+3)dangling pointer 
+4)(non)reentrant
+5)deadlock
+6)*p++, ++p, ++*p 
+
+Wipro
+
+—------------
+1).Char *p = “135.145.155.165”;
+Write a program to find sum is ?(hint: 135+145+155+165 =600) 
+
+
+int main() {
+    // Write C code here
+    char *ip = "135.145.155.165"; //135+145+155+165=600
+    printf("Hello world");
+    int sum = 0;
+    int index = 0;
+    char *t = NULL;
+    for(int i=0; i<= strlen(ip) ; i++) {
+        if((ip[i] == '.') || (ip[i] == '\0')) {
+            
+            t = (char *)malloc(4);
+            memset(t, '\0',4);
+            index = i;
+            strncpy(t,(&ip[index-3]),4);
+            sum = sum + atoi(t);
+            free(t);
+            t = NULL;
+            index = i+1;
+        }
+        }
+        printf("sum:%d\n",sum);
+        
+   return 0;        
+}
+
+Or
+
+int main () {
+   char str[80] = "135.145.155.165";
+   const char s[2] = ".";
+   char *token;
+   int sum = 0;
+   
+   /* get the first token */
+   token = strtok(str, s);
+   
+   /* walk through other tokens */
+   while( token != NULL ) {
+      printf( "# %s\n", token );
+      sum = sum + atoi(token);
+      token = strtok(NULL, s);
+   }
+   printf("sum:%d\n",sum);
+   
+   return(0);
+}
+
+
+2).i/p: “aBcDeF”
+   p/p: “AbCdEf”
+   Write a C program?
+3)what happen if we include multiple header files in .c file?
+4)tell about architecture of your project?
+5)int main()
+{
+struct node
+{
+int a, b, c;
+};
+struct node num = {3, 5, 6};
+                 
+struct node *ptr = &num;
+printf ("%d\n", *( (int*)ptr + 1 + (1)) ); //6 
+                        // *((1000)+2) = *(10008) = 6
+return 0;
+}
+
+6).structure vs union?
+7). Arrays vs linked list? Which one is best?
+8).count no of binary 1’s in a unsingened integer a = 16?
+9).how to pass a structure to a function?
+10).near pointer , far pointer?
+
+Capgemini
+
+—------------
+1).semaphore vs mutex?
+2).h1–switch/router–h2 , how ping works?
+3).host/switch/router who have arp table?
+4).what is snmp, how it works?
+5)explain calls of TCP socket client,server model?
+6)count no of binary 1’s in a num?
+7)who has mac table?
+8)A   B   C …. Z   AA AB AC ….AZ BA BB BC …BZ CA CB CC ….CZ
+  100 101 102  126 127 …………………………
+  Write a c program?
+9)
+
+=================================
+
+capgemini
+1st round:
+
+--------------
+Merge two sorted linked lists
+
+struct sll {                                t1
+   int data;                             1->3->5->7->NULL
+   sll_t *pnext;                         2->4->6->8->NULL
+}sll_t;                                     t2
+   
+sll_t * merge(sll_t *head1, sll_t *head2) {
+     sll_t *t1= head1,*t2 =head2;
+     while((t1 != NULL) && (t2 != NULL)) {
+          if(t1->data < t2->data) {
+              head3 = add_At_end(head3,t1->data);
+          }
+          else {
+             head3 = add_at_end(head3,t2->Data);              
+          }
+          t1= t1->pnext;
+          t2 = t2->pnext;
+     }
+     return head3;
+     free_sll(head1);
+     free_sll(head2);
+}
+
+sll_t * add_At_end(sll_t head3, int data) {
+
+      sll_t *new = (sll_t*)malloc(sizeof(sll_t));
+      new->Data = data;
+      new->pnext = NULL;
+
+      if(head3 == NULL)
+      {
+         head3 = new;
+         return head3;
+      }
+      sll_T *t = head3;
+      while(t) {
+           pprev = t;
+           t = t->pnext;
+      }
+      if(t == NULL) {
+          pprev->pnext = new;
+      }
+      return head3;
+}
+void free_sll(sll_T*head) {
+    sll_T *t = head;
+    sll_T *pprev = NULL;
+    while(t) {
+       pprev = t;
+       t = t->pnext;
+       free(pprev);
+    }
+    head = NULL;
+    
+
+}
+
+
+-
+
+capgemini
+2nd round:
+
+--------------
+1).
+unsigned long a;
+a = 0xABCD1234;
+
+Output:
+0x4BCD123A
+
+int change(int a) {
+   
+   a= (a & 0x0ffffff0) | (a & 0xf0000000)>>28 | ( a& 0x0000000f)<<28; 
+         0x0BCD1230
+           4       A
+}
+
+2).
+[18:51] U, Balaji
+    a[5] = 20;
+*(a+5) = 20;
+​[18:51] U, Balaji
+    a[0][5] = 20
+
+     *((*(&a+0))+5) = 20
+
+3).priority inversion, how you eliminate priority inversion?
+4).if p1 have 4 threads, p2 has 4 threads, and having 4 processor s only, then can p1 of 4 threads can run on 4 processrs?
+5).ospf vs bgp?
+6).how you choose hashing or tree data structure?
+7).h1-r1-r2-r3-h2, how icmp packet work?
+
+
+
+technicolour
+
+—-----------
+1.what if two(old,new) low end devices(rpi) have the same ip, the new device is assigned the same ip statically, how will the new guy know what will happen?
+2.what does a.out contain?
+3.structure size {
+     char ,
+	 char,
+	 int,
+	 float
+  }
+4.int main() {
+    int i = 10;
+	printf("&i:%u\n",&i);
+  }
+  what if we execute a.out binary in 10 terminals at same time, can we get &i value is same?
+5.diff b/w rstp vs vstp?  
+6.h1(vlan 100)–sw–h2(vlan 200) 
+  h1(vlan 100)–sw–h2(vlan 100)
+  h1(vlan 100-Access port)–sw–h2(trunk port - vlan 200)
+  h1(vlan 100-Access port)–sw–h2(access port vlan 200)
+  h1(vlan 100-trunk port)–sw–h2(trunk port -vlan 200)
+  h1(vlan 100)–sw-router–h2(vlan 200) , asked scenarios of various, how packet
+  Goes?
+7.
+
+Max linear 
+
+—-----------
+Convert string hexa number to int number? i/p: “0x1a” , o/p:26
+Skbuff {
+  …..
+  Int a;
+  … 
+  Int b;
+}
+
+fun(&a);
+
+//pass a’s address , print b’s address ?
+Int fun(int *data) { 
+    //print b’s address ?
+
+}
+3.what is flooding & forwarding at switch level ?
+
+
+
+Embeddedur
+—---------
+First round:
+1.queue vs priority queue , any example for priority queue
+2.how watchdog knows which process taking time?
+3.how many set bit’s in a char ?
+4.check num is power of 2 or not?
+5.in class A, how many host’s we can accommodate?
+6.multicast ip address range?
+7.TCP 3 way handshake?
+8.padding? Purpose? How can we eliminate?
+9.big endian vs little endian?
+10.native vlan? How many vlan?
+11.are you worked on 802.3 standard?
+12.binary tree vs binary search tree?
+13.what actually triggers watchdog? -ans). Raise signal.
+14.stack corruption? Heap corruption?
+15.process vs thread?
+16.process address space?
+17.where static variable stored - initialized/uninitilaized?
+18.#define pi 3.15
+   Const int pi = 3.15 , what are the differences?
+19. Int main() {
+       https://www.google.com;  //ans. Interviewer told label : https , goto
+       Return 0;
+    }
+    What is the behaviour, what it does?
+
+
+
+luxoft/extreme networks/dxc
+
+Second round
+—-------------
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+struct val {
+    char char_val; //1 +3padd
+    int int_val;
+    char string_val[4096];//
+    void *any_val;//4 or 8
+}; //5008 bytes 4+4 +4096 + 4 = 4108 , 4112
+
+
+int fun(void){
+    printf("void");
+    struct val new1;
+    struct val new2;
+    memset(&new1, 0, sizeof(struct val));
+    memset(&new2, 0, sizeof(struct val));
+    if((new1.char_val == new2.char_val) && (new1.int_val == new2.int_val) &&
+        (strcmp(new1.string_val,new2.string_val) == 0) && 
+        (new1.any_val == new2.any_val)) {
+        printf("\nnew1 and new2 are same\n");
+    }
+       
+    //int ret = memcmp(new1.char_val, new2.char_val,sizeof(char));
+    //printf("\nret:%d\n",ret)
+    printf("\n size of void *:%d\n",sizeof(new1.any_val));
+    printf("\nsize of struct val :%d\n",sizeof(struct val));
+    char h[] = "hello";
+    char *w = "world"; //
+    *h = 'a';//error h[0] ,*(h+0) = *h 
+    //*w = 'a';//error
+    //h = w;//lvalue error
+    w = h;//works
+
+    return 99;
+}
+int main()
+{
+    printf("Hello World");
+    typedef int (*n)();
+    n a;
+    a = fun;
+    printf("a:%d",a());
+    return 0;
+}
+
+
+
+
+Incedo
+
+—-------------
+Tcp , how secure connection happens?
+Arp vs rarap ?
+Flooding, aging?
+How many set bits in a num?
+Where we use stack’s and q’s?
+Sll loop finding?
+H1-router–h2 , how packet forward?
+Ping works?
+Dhcp, who will configure lease time?
+
+
+
+Maxlinear
+2nd round:
+
+—------------
+1.vlan frame format? 
+1.a) TPID vs Ethernet type field in ethernet frame?
+2.proxy arp, gratuitous arp?
+3.mysizeof() operator?
+4.int a[8] = {2,4,6,8,-1,-10,15};
+  What is the least positive integer?
+5.IGMP?
+6.write a bit field program?
+7.traceroute?
+8.padding, structure size?
+
+
+
+
+tejas interview questions:
+
+--------------------------
+1.how packet moves from L1 to L7 layers in skbuff context?
+2.what kernal stack does?
+3.what is the nth postion of bit which set's in 2^n number?
+  eg: 32, write a program withoug loop., hint:log function
+  ans).
+     Int i =0;
+     Double d = 0;
+     if((t=d=log2(num) && (t == d)) { // num is 2^p
+        printf("%d. d=%lf,t=%d\n",d, t);// t is the position of set bit.
+    }
+
+
+4.write an iterative program, not recursive, to print nodes in tree?
+5.create two dimensional array and free it.
+6.what is copy-on-write ?
+7.static linking vs dynamic linking?
+
+
+8. What happens?
+
+main() {
+
+  foo(a,b);
+  }
+
+9.linker vs loader?
+  NOTE: task structure/PCB, program counter, instruction pointer,... like this  
+        interviewer expecting while explaining loader.
+10.can we write a program without main function? How to write? Do we get any
+   error? If any compilation error? On what stage?
+
+Luxoft Managerial round:
+—----------------------
+1.why stacking functionality? People are achecving diversified model without
+  stacking.
+2.did you worked on http?
+3.
+
+
+Cisco
+
+—-----------
+1.abc permutations and combinations?
+2.count no of set bits in a num?
+3.dhcp packets exchange?
+4.how dns works?
+5.reverse linked list?
+6.(((45*90*27) *(23*45))/(88-25)); how it is executed? What is logic?
+  Hint:stack or tree
+7.depth/height of a tree?
+8.binary tree vs BST tree?
+8.BST tree vs AVL Tree? Time complexity of BST tree?
+9.traceroute utility?
+10.purpose of vlan’s?
+11.right shift(s) even position bits in a num?
+12.depth first search?
+13.accessport vs trunk port?
+14.what are complexities in multithreading?
+15.semaphore vs mutex?
+16.anagram program?
+17.how balancing happens in AVL Tree?
+18.vxlan ?
+
+Hcl
+
+—------------
+1).const int *p1;
+   int * const p2; 
+   difference?
+2).h1–r1-r2—---h2, how ping works?
+3).ttl filed? Is there any field in ipv4 header is changing/modifying while
+   switching packet?
+4).can we ping vlan10 to vlan20?
+5).Is there any way to packet forward from vlan10 to vlan20?
+6).little endian to big endian?
+7).offset 3, i/p:1->2->3->4->5->6->NULL
+             o/p:4->5->6->1->2->3->NULL
+8).how we configure ip address?
+9).netstat command?
+10).critical section?
+11).
+
+
+Infinite - nagendra
+22/4
+—------------------
+mton bits 
+array even [1,2,3,4,5,6,7,8,9]
+            2 4 6 10 1 3 5 7 9
+dhcp-imp fields
+snmp - commaand ivvagane internal ga em ru avthadi
+idb - hwidb, sfidb. vti- virtual tunnel interface
+linked list - delete duplicate nodes
+msq vs semaphore
+tcp,ip,udp,arp,ike
+
+
+
+
+
+VVDN  - ravi:
+======------
+1.diff b/w dynamic library and static library
+2.hashing method and sorting with O(n) time
+3.char val=255 ; printf("val=%d\n",val);
+4.how to check which function is taking most of cpu time
+5.how to check memory leak 
+6.GDB debugging steps
+7.What is the architecture used to develop an application
+8.IPC mechanisms used 
+
+ACL Technologies:-ravi
+=================-----
+1.Packet transfer b/w one system to another system in details with TCP layers
+2.What happens when we change MTU size to 30 when we whether the packet transfer and whether it is valid or not 
+3.L2/L3 protocol used 
+4.how to minimize the number of iterations to rotate the values in the linked list.
+5.difference b/w sizeof and strlen
+6.Hashing
+7.Thread and process difference
+8.types of ipc mechanisms 
+9.types of sockets 
+10.C memory layout and explanation 
+11.Write a program to list the words in sentence based on number of entries of each word a
+
+Wipro - ravi
+—-----------
+Difference between union and structres 
+what happpens if I access both variables at a time from an Union 
+Write a program using threads
+what are demon process how to implemnt them 
+how a demon process handles signals 
+explain sockets and systems calls used in sockets
+explain SIP protocal and 3 way calling 
+what is an transaction in SIP
+what are uses of writing funciton in marcto
+
+
+
+
+
+
+F5
+
+1st round & Second round:
+—-------------------------
+
+0.three threads add queue, delete queue, how to write a secure code ? 
+
+1.tcp socket calls?
+2.how can tcp server fixed for n number of clients?
+3.what are significant fields in TCP header?
+4.how windowsize works? On what basis?
+5.what is timed wait phase in TCP? 
+I said select, this is not he expects!
+6.how do we know last updated field in union structure?
+  If we have 100 variables inside union structure, how can we know in run time?
+7.reverse words in a sentence ?
+  i/p: “one two three four”
+  o/p: “four three two one”
+8.size of structure? With sizeof operator?
+9.ssl handshake, ciepher algorithms, http protocol. 
+10.how accept() works?why accept()? We already have master socket na ?
+11.IS accept() blocking call? If yes, why it is blocking?
+12.structure vs union?
+13.
+
+
+
+
+Truminds
+—------------
+1).how you monitor health of threads from main thread?
+  Myanswer - system(pstree) , it will list ,
+Other terminal, ps command monitor. 
+Still he is expecting other answer.
+2). How do you check folder/file size is increasing from code point view?
+3).how do you check how much ram/memory usage for a process from code point view?
+4).count no.of words in a sentence?
+5).is_intersect(phead1,phead2);
+
+
+Hcl-dell
+—-------
+1.how you do hashing, if file has duplicate lines?
+  HINT: cyclical redundancy check.
+2.how to find intersection of node in two linked list?
+3.if ttl=0 , what happen?
+  HINT: icmp error msg of respective code.
+4.why gratuitous arp?
+5.how select waits? How can you give no of fd’s as argument?
+6.tcp 3-way handshake?
+7.traceroute?
+8.mirror image of tree?
+9.inorder in tree?
+10.BST vs AVL Tree?
+11.MTU?
+12.in stacking, routing tables are also synced with standby?
+13.when you go iterative over recursion in trees?
+14.when ‘DF’ or Do not Fragment Bit will set in IPV4 header?
+15.
+
+F5
+HM round 
+CF  round
+—---------
+1.what are your highs and lows in your career?
+2.what is +ve and -ve?
+3.did you try to improve your -ve’s?
+4.Hobbies?
+5.any certification done?
+6.any Training completed?
+7.have any chance to give presentations to your team?
+8.what is your Toughest Bug?
+9.
+
+
+tech mahindra - ravi
+—--------------------
+1.realtime process vs process 
+2.semaphore
+3.optimized strcpy ?
+4.process priority - algorithms ?
+5.h1-....-h2 connected, but data not able to transfer successfully, any reasons?
+  HINT: port filtering 
+6.
+
+ACL final round questions -
+====================================
+1.TCP hand shake how it happens 
+2.what if client doesn't respond to syn ACk 
+3.What if server doesn't respond for syn 
+4.what the flags in TCP connection
+5.How does VLNs works 
+6.how does one VLN client communicates b\w another clients in different VLN 
+7.What are the differnet b/w multi thread process and multi process system
+8.which approuch u will take 
+9.If u take  tasks and implemented a multi thread process and multi process system (which is effective and why )
+10.what happens one thread crashes  
+11.what happens one process crashes 
+12.what heppens if threads was using mutex locks and locked shared resource and crash what happen to other threads
+13.what heppens if a shared resource used by process and lockes and process crash what heppens to other process waiting for the same process 
+14.Explain about hashing mechanisam
+15.what are the difference between shared memory and message queues, in which cases we use them 
+16.who will monitor process states 
+17.how can u reverse a byte with out any shifing operations with time complexity as 1
+
+c_in_depth
+
+Proudly powered by WordPress
